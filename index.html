@@ -31,13 +31,18 @@
   --rouge:#b32a1e; --rouge-sombre:#7d1a12; --velours:#8a2119; --velours-nuit:#5d130e;
   --or:#d78a0c; --or-clair:#f2b544; --foret:#1f4a38; --foret-nuit:#14291f;
   --pass-a:#eb2f6b; --pass-b:#8a2be2;
-  --r:14px; --ease:cubic-bezier(.16,1,.3,1); --haut:72px;
+  --r:14px; --ease:cubic-bezier(.16,1,.3,1); --haut:72px; --haut-colle:58px;
   --ombre:0 14px 30px -18px rgba(66,38,20,.55);
   --tf:'Bricolage Grotesque','Trebuchet MS','Segoe UI',sans-serif;
   --tc:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--haut) + 14px);-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:var(--haut-colle);-webkit-text-size-adjust:100%}
+/* Le bandeau se rétracte dès qu'on défile : l'arrêt des ancres se cale sur sa
+   hauteur RÉDUITE (--haut-colle), sinon un reste de la section précédente
+   dépasse sous l'en-tête. La marge négative rogne un peu du padding haut de
+   la section visée, pour que son titre arrive franchement en haut de l'écran. */
+section[id]{scroll-margin-top:-1.4rem}
 body{
   font-family:var(--tc);background:var(--papier);color:var(--encre);line-height:1.6;overflow-x:hidden;
   background-image:
@@ -414,6 +419,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .prix li b{font-family:var(--tf);font-weight:600;font-size:1rem}
 .prix li span{color:var(--encre-doux);font-size:.8rem;display:block;font-weight:400;font-family:var(--tc)}
 .prix li em{font-style:normal;font-family:var(--tf);font-weight:800;font-size:1.3rem;color:var(--rouge);white-space:nowrap}
+.prix li em.prix__txt{font-size:.9rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase}
 .pass{padding:1.7rem;border-radius:var(--r);color:#fff;
   background:linear-gradient(135deg,var(--pass-a),var(--pass-b) 72%,#4b1670);box-shadow:0 20px 38px -22px rgba(90,20,120,.9)}
 .pass h3{font-family:var(--tf);font-weight:800;font-size:1.35rem;margin-bottom:.5rem}
@@ -467,7 +473,8 @@ footer{background:var(--foret-nuit);color:#e7f0e8;padding:3rem 5% 2rem;position:
   .tarifs{grid-template-columns:1fr}
 }
 @media (max-width:820px){
-  :root{--haut:62px}
+  :root{--haut:62px;--haut-colle:60px}
+  section[id]{scroll-margin-top:-1rem}
   .burger{display:block}
   .menu{position:fixed;inset:0;z-index:901;flex-direction:column;justify-content:center;gap:1.7rem;
     background:rgba(251,245,232,.98);backdrop-filter:blur(12px);transform:translateX(100%);opacity:0;visibility:hidden;
@@ -674,6 +681,22 @@ footer{background:var(--foret-nuit);color:#e7f0e8;padding:3rem 5% 2rem;position:
 .fiche__ligne small{color:var(--encre-doux)}
 .fiche__go{padding:.32rem .7rem;border-radius:999px;border:1px solid var(--rouge);color:var(--rouge);background:transparent;font-size:.74rem;font-weight:600;white-space:nowrap}
 .fiche__go:hover{background:var(--rouge);color:#fff6ea}
+/* « Où acheter sa place ? » — bloc d'aide en bas de la fiche, pensé pour les
+   spectateurs qui ne savent pas où réserver : une phrase claire, puis un
+   bouton par cinéma qui projette ce film. */
+.fiche__ou{margin-top:1.3rem;padding:.95rem 1.1rem;border-radius:12px;
+  background:rgba(179,42,30,.06);border:1px solid rgba(179,42,30,.22)}
+.fiche__ou h4{display:flex;align-items:center;gap:.45rem;font-family:var(--tf);font-weight:800;
+  font-size:.95rem;color:var(--rouge-sombre);margin:0 0 .35rem}
+.fiche__ou h4 .ic{font-size:1.05rem;flex:none}
+.fiche__ou p{font-size:.84rem;line-height:1.5;color:var(--encre-doux);margin:0}
+.fiche__ou .fiche__salles{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.75rem}
+.fiche__ou .fiche__salles a{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .8rem;
+  border-radius:999px;border:1.5px solid var(--rouge);color:var(--rouge);background:var(--papier-clair);
+  font-size:.78rem;font-weight:600;line-height:1.2}
+.fiche__ou .fiche__salles a:hover{background:var(--rouge);color:#fff6ea}
+.fiche__ou .fiche__salles .ic{font-size:.9rem;flex:none}
+.fiche__ou .fiche__sansliens{margin-top:.6rem;font-size:.79rem;font-style:italic}
 .fiche__fermer{position:absolute;top:.8rem;right:.8rem;z-index:3;width:2.3rem;height:2.3rem;border-radius:50%;border:0;
   background:var(--encre);color:#fff3e2;font-size:1.3rem;line-height:1;display:grid;place-items:center}
 .fiche__fermer:hover{background:var(--rouge)}
@@ -948,7 +971,7 @@ function afficheOk(img){
     </div>
     <div class="bloc reveal">
       <h3><svg class="ic" aria-hidden="true"><use href="#i-ticket"></use></svg> Le prix d’un ticket</h3>
-      <p>Un tarif unique pour toutes les séances du festival, des places à 3&nbsp;€ pour les séances spéciales enfants, et le Pass Culture accepté.</p>
+      <p>Un tarif unique pour toutes les séances du festival, le tarif habituel de la salle pour les moins de 14 ans, des places à 3&nbsp;€ pour les séances spéciales enfants, et le Pass Culture accepté.</p>
     </div>
   </div>
 </section>
@@ -3094,6 +3117,7 @@ function afficheOk(img){
     <ul class="prix reveal">
       <!-- ⚠️ TARIF FESTIVAL : à confirmer avant publication (4,50 € en 2025). -->
       <li><b>Tarif unique festival<span>Toutes les séances, dans les six cinémas</span></b><em>4,50&nbsp;€</em></li>
+      <li><b>Moins de 14 ans<span>Le tarif habituel de votre cinéma s’applique</span></b><em class="prix__txt">Tarif salle</em></li>
       <li><b>Séances spéciales enfants<span>Ciné-Jeunes et Mon Petit Ciné</span></b><em>3,00&nbsp;€</em></li>
       <li><b>Stage mini-film<span>8 à 11 ans · 3h30 · sur inscription</span></b><em>2,00&nbsp;€</em></li>
       <li><b>Moyens de paiement<span>Espèces, chèques, Chèque Cinéma Universel et Cinéchèques</span></b><em>✓</em></li>
@@ -3213,6 +3237,7 @@ function afficheOk(img){
       <h3 id="fiche-titre"></h3>
       <p class="fiche__resume" id="fiche-resume"></p>
       <div id="fiche-liste"></div>
+      <div class="fiche__ou" id="fiche-ou" hidden></div>
     </div>
   </div>
 </dialog>
@@ -3262,7 +3287,24 @@ function afficheOk(img){
     burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
     document.body.style.overflow = ouvert ? 'hidden' : '';
   });
-  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', fermerMenu); });
+  /* Un lien du menu : on referme D'ABORD (le menu mobile verrouille le
+     défilement de la page), puis on va à la section à la frame suivante.
+     Sans cela, le navigateur calcule le saut pendant que la page est figée
+     et s'arrête au mauvais endroit. */
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var cible = (a.getAttribute('href') || '').charAt(0) === '#'
+        ? document.getElementById(a.getAttribute('href').slice(1)) : null;
+      fermerMenu();
+      if (!cible) return;
+      e.preventDefault();
+      requestAnimationFrame(function () {
+        cible.scrollIntoView({ behavior: sobre() ? 'auto' : 'smooth', block: 'start' });
+        try { if (window.history && history.replaceState) history.replaceState(null, '', a.getAttribute('href')); }
+        catch (err) { /* fichier ouvert en local : sans importance */ }
+      });
+    });
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && menu.classList.contains('ouvert')) { fermerMenu(); burger.focus(); }
   });
@@ -3636,6 +3678,40 @@ function afficheOk(img){
               '<button type="button" class="fiche__go" data-cine="' + x.cine + '" data-jour="' + x.jour + '">Voir la salle</button></div>';
     });
     document.getElementById('fiche-liste').innerHTML = html || '<p class="fiche__resume">Horaires bientôt disponibles.</p>';
+
+    /* --- « Où acheter sa place ? » ---------------------------------------
+       Cinés-Pays ne vend pas de billets : chaque cinéma garde sa billetterie.
+       On le dit noir sur blanc et on donne le lien de chaque salle qui passe
+       CE film, pour que personne n'ait à chercher. */
+    var zoneOu = document.getElementById('fiche-ou');
+    if (zoneOu) {
+      var salles = Object.keys(cines), boutons = '', manquants = [];
+      salles.forEach(function (id) {
+        var s = SITES[id] || {}, nom = s.nom || id, url = s.site || s.allocine || '';
+        if (url && /^https:\/\/[^\s"'<>]+$/.test(url)) {
+          boutons += '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' +
+                     '<svg class="ic" aria-hidden="true"><use href="#' + (s.site ? 'i-web' : 'i-film') + '"></use></svg>' +
+                     echap(nom) + '</a>';
+        } else {
+          manquants.push(nom);
+        }
+      });
+
+      zoneOu.innerHTML =
+        '<h4><svg class="ic" aria-hidden="true"><use href="#i-ticket"></use></svg> Où acheter sa place&nbsp;?</h4>' +
+        '<p>Les billets ne se prennent pas sur ce site&nbsp;: chaque cinéma gère ses propres places. ' +
+        'Pour assister à l’une de ces séances, rendez-vous sur le site du cinéma concerné, ' +
+        'ou directement à la caisse de la salle avant la séance.</p>' +
+        (boutons ? '<div class="fiche__salles">' + boutons + '</div>' : '') +
+        (manquants.length
+          ? '<p class="fiche__sansliens">' + echap(manquants.join(', ')) +
+            (manquants.length > 1 ? ' n’ont pas de site&nbsp;: rendez-vous sur place ou appelez la salle (coordonnées dans la rubrique « Les six cinémas »).'
+                                  : ' n’a pas de site&nbsp;: rendez-vous sur place ou appelez la salle (coordonnées dans la rubrique « Les six cinémas »).') +
+            '</p>'
+          : '');
+      zoneOu.hidden = salles.length === 0;
+    }
+
     fiche.showModal();
     document.body.classList.add('fige');
     fiche.querySelector('.fiche__txt').scrollTop = 0;
