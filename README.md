@@ -8,7 +8,7 @@ Le site est composé de trois choses :
 | `programme.csv` | Toutes les séances du festival. C'est le seul fichier à remplacer chaque année. |
 | `affiches/` | Les images des affiches, une par film. |
 
-Adresse du site : https://azaa6-9.github.io/cines-pays/
+Adresse du site : https://azaa6-9.github.io/cines-pays-evenement/
 
 ---
 
