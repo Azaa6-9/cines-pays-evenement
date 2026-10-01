@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Cinés-Pays 2026 — 18ᵉ édition | Festival de 6 cinémas de Brocéliande</title>
-<meta name="description" content="18ᵉ festival Cinés-Pays, du 21 au 27 octobre 2026 : 195 séances, 39 films, 6 cinémas associatifs en Brocéliande (Bréal, Montauban, Montfort, Plélan, Romillé, Saint-Méen).">
+<title>Cinés-Pays — Festival de 6 cinémas de Brocéliande</title>
+<meta name="description" content="Festival Cinés-Pays : une semaine de cinéma dans les 6 salles associatives de Brocéliande (Bréal, Montauban, Montfort, Plélan, Romillé, Saint-Méen). Programme, horaires et tarifs.">
 <meta name="theme-color" content="#f3ead7">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Cinés-Pays 2026 — 18ᵉ édition">
-<meta property="og:description" content="Du 21 au 27 octobre 2026, 195 séances dans les 6 cinémas associatifs de Brocéliande.">
+<meta property="og:title" content="Festival Cinés-Pays">
+<meta property="og:description" content="Une semaine de cinéma dans les 6 salles associatives de Brocéliande, pendant les vacances de la Toussaint.">
 <meta property="og:locale" content="fr_FR">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8E%9E%EF%B8%8F</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   CINÉS-PAYS 2026 — feuille de style unique, sans librairie externe.
+   CINÉS-PAYS — feuille de style unique, sans librairie externe.
    Direction : le programme papier d'un cinéma de village.
    Papier crème + deux encres (rouge rideau, vert Brocéliande) + ambre
    d'enseigne. Le programme se lit « salle éteinte » : bandeau velours.
@@ -766,7 +766,7 @@ function afficheOk(img) {
 <header class="bandeau" id="bandeau">
   <a class="marque" href="#accueil">
     <span class="marque__pic" aria-hidden="true"><svg class="ic" style="font-size:1.3rem"><use href="#i-bobine"></use></svg></span>
-    <span class="marque__t">Cinés-Pays<span class="marque__s">18ᵉ édition · 2026</span></span>
+    <span class="marque__t">Cinés-Pays<span class="marque__s" id="marque-edition">Festival de Brocéliande</span></span>
   </a>
   <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
     <span></span><span></span><span></span>
@@ -792,9 +792,9 @@ function afficheOk(img) {
   <div class="une__drape une__drape--d" aria-hidden="true"></div>
   <div class="une__in">
     <div class="une__txt">
-      <p class="billet"><svg class="ic ic--p" aria-hidden="true"><use href="#i-star"></use></svg> 18ᵉ édition du festival</p>
-      <h1><span class="l1">Cinés-Pays</span><span class="l2">2026</span></h1>
-      <p class="dates">Du <b>mercredi 21</b> au <b>mardi 27 octobre 2026</b> · vacances de la Toussaint</p>
+      <p class="billet"><svg class="ic ic--p" aria-hidden="true"><use href="#i-star"></use></svg> <span id="billet-edition">Le festival des six cinémas</span></p>
+      <h1><span class="l1">Cinés-Pays</span><span class="l2" id="titre-annee"></span></h1>
+      <p class="dates" id="dates-festival">Une semaine de cinéma · vacances de la Toussaint</p>
       <p class="decompte" id="decompte" hidden><span class="decompte__rec" aria-hidden="true"></span><span id="decompte-txt"></span></p>
       <p class="intro">Une folle semaine de cinéma dans 6 salles associatives de Brocéliande. Sorties nationales, avant-premières, films pour les petits et les grands, ateliers et rencontres — le tout à deux pas de chez vous.</p>
       <div class="une__bt">
@@ -891,7 +891,7 @@ function afficheOk(img) {
 <section class="sec" id="programme">
   <div class="sec__tete reveal">
     <h2>Le programme, salle par salle</h2>
-    <p id="programme-sous">Sept jours de séances, du mercredi 21 au mardi 27 octobre 2026.</p>
+    <p id="programme-sous">Une semaine de séances dans les six cinémas.</p>
   </div>
 
   <div class="onglets" id="onglets" role="tablist" aria-label="Choisir un cinéma"></div>
@@ -915,7 +915,7 @@ function afficheOk(img) {
 <section class="sec" id="films">
   <div class="sec__tete reveal">
     <h2 class="marquise" id="films-titre">Les films de la semaine</h2>
-    <p>De l’animation pour les tout-petits au grand film du soir, voici toute la sélection 2026. Cliquez sur une affiche pour voir où et quand le film passe.</p>
+    <p id="films-sous">De l’animation pour les tout-petits au grand film du soir, voici toute la sélection. Cliquez sur une affiche pour voir où et quand le film passe.</p>
   </div>
   <div class="films-outils reveal">
     <div class="puces" role="group" aria-label="Filtrer les films">
@@ -939,35 +939,18 @@ function afficheOk(img) {
   <div class="anim">
     <div class="bloc reveal">
       <h3><svg class="ic" aria-hidden="true"><use href="#i-cam"></use></svg> Stage mini-film · 8 à 11 ans</h3>
-      <p>Trois heures trente pour écrire, tourner et monter un petit film, encadré par la compagnie Artefakt. Tarif 2&nbsp;€, places limitées, inscription à l’accueil de votre cinéma. Nouveau&nbsp;: Le Celtic propose aussi un stage pour les adultes, mercredi 21 octobre à 17h00.</p>
-      <ul><li><b>La Bobine</b><span>Bréal-sous-Montfort</span><em>Mardi 27 octobre · 9h00</em></li>
-<li><b>Ciné-Montal</b><span>Montauban-de-Bretagne</span><em>Vendredi 23 octobre · 9h00</em></li>
-<li><b>La Cane</b><span>Montfort-sur-Meu</span><em>Jeudi 22 octobre · 9h00</em></li>
-<li><b>L’Hermine</b><span>Plélan-le-Grand</span><em>Lundi 26 octobre · 9h00</em></li>
-<li><b>Le Korrigan</b><span>Romillé</span><em>Samedi 24 octobre · 9h00</em></li>
-<li><b>Le Celtic</b><span>Saint-Méen-le-Grand</span><em>Mercredi 21 octobre · 9h00</em></li></ul>
+      <p>Trois heures trente pour écrire, tourner et monter un petit film, encadré par la compagnie Artefakt. Tarif 2&nbsp;€, places limitées, inscription à l’accueil de votre cinéma.</p>
+      <ul id="anim-stage"></ul>
     </div>
     <div class="bloc reveal">
       <h3><svg class="ic" aria-hidden="true"><use href="#i-star"></use></svg> Séances Ciné-Jeunes</h3>
       <p>Une séance par salle, à 3&nbsp;€, avec un film choisi pour les enfants.</p>
-      <ul><li><b>Kerity, la maison des contes</b><span>La Bobine · Bréal-sous-Montfort</span><em>Mercredi 21 octobre · 14h30</em></li>
-<li><b>Même les souris vont au paradis</b><span>Ciné-Montal · Montauban-de-Bretagne</span><em>Vendredi 23 octobre · 14h30</em></li>
-<li><b>Le Robot sauvage</b><span>La Cane · Montfort-sur-Meu</span><em>Mardi 27 octobre · 14h30</em></li>
-<li><b>Sherlock Junior</b><span>L’Hermine · Plélan-le-Grand</span><em>Samedi 24 octobre · 17h00</em></li>
-<li><b>Le Robot sauvage</b><span>Le Korrigan · Romillé</span><em>Lundi 26 octobre · 14h30</em></li>
-<li><b>Le Robot sauvage</b><span>Le Celtic · Saint-Méen-le-Grand</span><em>Jeudi 22 octobre · 15h00</em></li></ul>
+      <ul id="anim-cj"></ul>
     </div>
     <div class="bloc reveal">
       <h3><svg class="ic" aria-hidden="true"><use href="#i-users"></use></svg> Avant-premières &amp; rencontres</h3>
       <p>Plusieurs séances sont proposées avant la sortie nationale, certaines en présence d’une association ou d’un intervenant.</p>
-      <ul>
-        <li><b>Louve, une vie dans les Alpes</b><span>Ciné-Montal · Montauban-de-Bretagne</span><em>Jeudi 22 octobre · 20h30</em></li>
-        <li><b>Louve, une vie dans les Alpes</b><span>La Bobine · Bréal-sous-Montfort</span><em>Dimanche 25 octobre · 15h00</em></li>
-        <li><b>Louve, une vie dans les Alpes</b><span>La Cane · Montfort-sur-Meu</span><em>Lundi 26 octobre · 20h30</em></li>
-        <li><b>Louve, une vie dans les Alpes</b><span>Le Celtic · Saint-Méen-le-Grand</span><em>Mardi 27 octobre · 20h30</em></li>
-        <li><b>Camembert</b><span>L’Hermine · Plélan-le-Grand</span><em>Mercredi 21 octobre · 20h30</em></li>
-        <li><b>Moulin</b><span>La Cane · Montfort-sur-Meu</span><em>Dimanche 25 octobre · 20h30</em></li>
-      </ul>
+      <ul id="anim-avp"></ul>
     </div>
   </div>
 </section>
@@ -1076,7 +1059,7 @@ function afficheOk(img) {
     </div>
   </div>
   <div class="pied-bas">
-    <p>Festival Cinés-Pays · 18ᵉ édition · 21 → 27 octobre 2026 · Brocéliande, Ille-et-Vilaine</p>
+    <p id="pied-edition">Festival Cinés-Pays · Brocéliande, Ille-et-Vilaine</p>
     <nav>
       <a class="bt bt--v bt--s bt--rs" href="https://www.instagram.com/festivalcinespays/" target="_blank" rel="noopener noreferrer">
         <svg class="ic" aria-hidden="true"><use href="#i-ig"></use></svg> Instagram
@@ -1243,11 +1226,15 @@ function afficheOk(img) {
        jeune    — « oui » pour la pastille Jeune public sur l'affiche
      =================================================================== */
 
-  var FESTIVAL = {
-    annee:  2026,                              // s'affiche en bas des affiches dessinées
-    debut:  '2026-10-21T09:00:00+02:00',       // début du compte à rebours
-    fin:    '2026-10-27T23:30:00+01:00'        // fin du festival
-  };
+  /* Un seul repère à retenir : la 18ᵉ édition s'est tenue en 2026.
+     Tout le reste — année affichée, numéro d'édition, dates, compte à rebours —
+     est déduit des dates de programme.csv. Il n'y a donc rien à changer ici
+     d'une année sur l'autre : on remplace le fichier, et la page suit.
+     (Si une année saute, corrigez simplement ces deux nombres.) */
+  var EDITION = { annee: 2026, numero: 18 };
+
+  var FESTIVAL = { annee: EDITION.annee };   // s'affiche en bas des affiches dessinées
+  var EDITION_ORD = EDITION.numero + 'ᵉ';
 
   /* Coordonnées des salles : cela ne change presque jamais, c'est donc ici
      et non dans le tableau. L'identifiant (bobine, montal…) est celui que
@@ -1474,7 +1461,116 @@ function afficheOk(img) {
     return h ? '<span class="tags">' + h + '</span>' : '';
   }
 
+  /* Tout ce qui dépend de l'année ou des dates est réécrit ici, à partir
+     du premier et du dernier jour trouvés dans programme.csv. */
+  function appliquerEdition() {
+    if (!JOURS.length) return;
+    var d1 = dateDe(JOURS[0]), d2 = dateDe(JOURS[JOURS.length - 1]);
+    var annee = d1.getFullYear();
+
+    FESTIVAL.annee = annee;
+    EDITION_ORD = (EDITION.numero + (annee - EDITION.annee)) + 'ᵉ';
+
+    function pose(id, texte) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = texte;
+    }
+    /* « du mercredi 21 au mardi 27 octobre » — le mois n'est répété
+       que si le festival chevauche deux mois. */
+    function periode() {
+      return 'du ' + JOURS_FR[d1.getDay()] + ' ' + d1.getDate() +
+             (d1.getMonth() !== d2.getMonth() ? ' ' + MOIS_LONG[d1.getMonth()] : '') +
+             ' au ' + JOURS_FR[d2.getDay()] + ' ' + d2.getDate() + ' ' +
+             MOIS_LONG[d2.getMonth()] + ' ' + annee;
+    }
+
+    pose('titre-annee', annee);
+    pose('marque-edition', EDITION_ORD + ' édition · ' + annee);
+    pose('billet-edition', EDITION_ORD + ' édition du festival');
+    pose('films-sous', 'De l’animation pour les tout-petits au grand film du soir, voici toute ' +
+         'la sélection ' + annee + '. Cliquez sur une affiche pour voir où et quand le film passe.');
+    pose('pied-edition', 'Festival Cinés-Pays · ' + EDITION_ORD + ' édition · ' + d1.getDate() +
+         (d1.getMonth() !== d2.getMonth() ? ' ' + MOIS_LONG[d1.getMonth()] : '') +
+         ' → ' + d2.getDate() + ' ' + MOIS_LONG[d2.getMonth()] + ' ' + annee +
+         ' · Brocéliande, Ille-et-Vilaine');
+
+    var z = document.getElementById('dates-festival');
+    if (z) {
+      z.innerHTML = 'Du <b>' + JOURS_FR[d1.getDay()] + ' ' + d1.getDate() +
+        (d1.getMonth() !== d2.getMonth() ? ' ' + MOIS_LONG[d1.getMonth()] : '') +
+        '</b> au <b>' + JOURS_FR[d2.getDay()] + ' ' + d2.getDate() + ' ' +
+        MOIS_LONG[d2.getMonth()] + ' ' + annee + '</b> · vacances de la Toussaint';
+    }
+
+    document.title = 'Cinés-Pays ' + annee + ' — ' + EDITION_ORD +
+                     ' édition | Festival de 6 cinémas de Brocéliande';
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', EDITION_ORD + ' festival Cinés-Pays, ' + periode() +
+        ' : ' + SEANCES.filter(function (s) { return !s.stage; }).length + ' séances, ' +
+        FILMS.length + ' films, 6 cinémas associatifs en Brocéliande.');
+    }
+
+    /* le compte à rebours suit le programme : 9h le premier jour, 23h30 le dernier.
+       Dates construites en heure locale : le passage à l'heure d'hiver, qui tombe
+       souvent pendant le festival, est géré tout seul par le navigateur. */
+    DEBUT = new Date(d1.getFullYear(), d1.getMonth(), d1.getDate(), 9, 0).getTime();
+    FIN   = new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 23, 30).getTime();
+  }
+
+  /* Les trois listes de la rubrique « Les animations » sont elles aussi
+     construites depuis le CSV : rien à recopier à la main. */
+  function construireAnimations() {
+    function jourHeure(s) {
+      var d = dateDe(s.jour);
+      return capitale(JOURS_FR[d.getDay()]) + ' ' + d.getDate() + ' ' +
+             MOIS_LONG[d.getMonth()] + ' · ' + s.heure.texte;
+    }
+    function parDate(a, b) {
+      if (a.jour !== b.jour) return a.jour < b.jour ? -1 : 1;
+      return a.heure.minutes - b.heure.minutes;
+    }
+    function salle(s) { return CINEMAS[s.cine] || { nom: s.cine, ville: '' }; }
+
+    /* une ligne = un titre en gras, un sous-titre, puis la date */
+    function lignes(id, liste, gras, sous) {
+      var ul = document.getElementById(id);
+      if (!ul) return;
+      ul.innerHTML = liste.sort(parDate).map(function (s) {
+        return '<li><b>' + echap(gras(s)) + '</b><span>' + echap(sous(s)) +
+               '</span><em>' + echap(jourHeure(s)) + '</em></li>';
+      }).join('');
+    }
+
+    var stages = [], cj = [], avp = [];
+    SEANCES.forEach(function (s) {
+      if (s.stage) { stages.push(s); return; }
+      var codes = s.tags.map(function (t) { return t.classe; });
+      if (codes.indexOf('cj')  > -1) cj.push(s);
+      if (codes.indexOf('avp') > -1) avp.push(s);
+    });
+
+    /* stages : la salle en gras ; l'atelier adultes est signalé au passage */
+    lignes('anim-stage', stages,
+           function (s) { return salle(s).nom; },
+           function (s) {
+             var v = salle(s).ville;
+             return /adulte/i.test(s.titre) ? v + ' · atelier adultes' : v;
+           });
+
+    /* ciné-jeunes et avant-premières : le film en gras, la salle en dessous */
+    function filmPuisSalle(id, liste) {
+      lignes(id, liste,
+             function (s) { return s.titre; },
+             function (s) { return salle(s).nom + ' · ' + salle(s).ville; });
+    }
+    filmPuisSalle('anim-cj', cj);
+    filmPuisSalle('anim-avp', avp);
+  }
+
   function construire() {
+    appliquerEdition();
+    construireAnimations();
     var cinesUtilises = ORDRE_CINEMAS.filter(function (id) {
       return SEANCES.some(function (s) { return s.cine === id; });
     });
@@ -1577,6 +1673,7 @@ function afficheOk(img) {
     if (sous && JOURS.length) {
       var d1 = dateDe(JOURS[0]), d2 = dateDe(JOURS[JOURS.length - 1]);
       sous.textContent = JOURS.length + ' jours de séances, du ' + JOURS_FR[d1.getDay()] + ' ' + d1.getDate() +
+                         (d1.getMonth() !== d2.getMonth() ? ' ' + MOIS_LONG[d1.getMonth()] : '') +
                          ' au ' + JOURS_FR[d2.getDay()] + ' ' + d2.getDate() + ' ' +
                          MOIS_LONG[d2.getMonth()] + ' ' + d2.getFullYear() + '.';
     }
@@ -1648,8 +1745,7 @@ function afficheOk(img) {
 
   /* --------------------------------------------------- compte à rebours */
   var decompte = document.getElementById('decompte'), decompteTxt = document.getElementById('decompte-txt');
-  var DEBUT = new Date(FESTIVAL.debut).getTime(),
-      FIN = new Date(FESTIVAL.fin).getTime();
+  var DEBUT = 0, FIN = 0;   /* renseignés par appliquerEdition(), depuis programme.csv */
   function majDecompte() {
     var now = Date.now();
     if (now < DEBUT) {
@@ -1659,11 +1755,11 @@ function afficheOk(img) {
     } else if (now <= FIN) {
       decompteTxt.textContent = 'Le festival bat son plein : bonne séance !';
     } else {
-      decompteTxt.textContent = 'Merci d’avoir fait vivre la 18ᵉ édition. À l’année prochaine !';
+      decompteTxt.textContent = 'Merci d’avoir fait vivre la ' + EDITION_ORD + ' édition. À l’année prochaine !';
     }
     decompte.hidden = false;
   }
-  if (decompte) { majDecompte(); setInterval(majDecompte, 30000); }
+  /* démarré à la fin de demarrer(), une fois les dates du CSV connues */
 
   /* --------------------------------------------------- faisceau + poussières */
   var une = document.querySelector('.une'), faisceau = document.querySelector('.une__faisceau');
@@ -1717,6 +1813,9 @@ function afficheOk(img) {
      qu'une fois programme.csv lu et la page construite.
      =================================================================== */
   function demarrer() {
+  /* --------------------------------------------------- compte à rebours */
+  if (decompte && DEBUT) { majDecompte(); setInterval(majDecompte, 30000); }
+
   /* --------------------------------------------------- apparitions au scroll */
   var aVoir = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
   aVoir.forEach(function (el) {
